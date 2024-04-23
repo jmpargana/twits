@@ -1,0 +1,13 @@
+<div id="#twit-list" hx-get="/twits_html" hx-swap="innerHTML" hx-trigger="every 1m">
+<ul class="space-y-4">
+    {{#each twits}}
+        <li class="p-4 bg-white rounded-lg shadow">
+            <div class="flex items-center justify-between mb-1">
+                <h2 class="text-lg font-semibold text-gray-900">{{this.user}}</h2>
+                <span class="text-sm text-gray-500">{{this.created_at}}</span>
+            </div>
+            <p class="text-gray-800">{{this.content}}</p>
+        </li>
+    {{/each}}
+</ul>
+</div>

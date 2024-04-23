@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.11"
+            integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0"
+            crossorigin="anonymous"></script>
+    <title>Twitter</title>
+</head>
+    <body>
+        <div class="min-h-screen flex flex-col items-center pt-10 pb-20">
+            <div class="w-full max-w-2xl px-2">
+                <div class="mb-6 px-4 py-3 bg-white rounded-lg shadow-md">
+                    <h1 class="text-2xl font-bold text-gray-900 mb-4">Tweet Something...</h1>
+                    <form id="twit-form" method="POST" hx-post="/twits" hx-target="#twit-list" hx-swap="innerHTML">
+                        <textarea id="content" class="w-full p-3 text-sm text-gray-800 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" name="content" rows="4" placeholder="What's happening?" required></textarea>
+                        <button type="submit" class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200">
+                            Tweet
+                        </button>
+                    </form>
+                </div>
+                <div hx-get="/twits_html" hx-swap="innerHTML" hx-trigger="load">
+                <div class="max-w-2xl mx-auto my-10">
+                    <ul class="space-y-4 animate-pulse">
+                        <li class="p-4 bg-white rounded-lg shadow">
+                            <div class="flex items-center justify-between mb-1">
+                                <div class="h-2 bg-gray-300 rounded w-1/4"></div>
+                                <div class="h-2 bg-gray-300 rounded w-1/6"></div>
+                            </div>
+                            <div class="h-2 bg-gray-300 rounded w-5/6"></div>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    {{!-- <script> --}}
+    {{!--     document.getElementById('twit-form').addEventListener('htmx:afterRequest', function() this.reset(); }); --}}
+    {{!-- </script> --}}
+</html>
+
